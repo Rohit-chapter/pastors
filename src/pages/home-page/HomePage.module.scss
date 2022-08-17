@@ -1,0 +1,18 @@
+#homePageMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+
+  .allContactsControl {
+    width: 30%;
+    background-color: var(--application-primary-color);
+    margin: 0 auto 50px auto;
+  }
+
+  .usContactsControl {
+    width: 30%;
+    background-color: var(--application-secondary-color);
+    margin: 0 auto;
+  }
+}

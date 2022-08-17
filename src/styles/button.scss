@@ -1,0 +1,25 @@
+.application-themed-button {
+  border-radius: var(--application-border-radius);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  text-align: center;
+  border: 0;
+  padding: 12px;
+  height: 40px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: stretch;
+  user-select: none;
+  width: 100%;
+  color: var(--application-primary-background-color);
+
+  &:hover,
+  &:active {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  }
+
+}

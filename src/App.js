@@ -1,13 +1,17 @@
 import React from 'react';
 
+import RouteComponent from 'routes/RouteComponent';
+
 import styles from './App.module.scss';
 
 function App() {
+
   return (
     <div id={styles.pastorApplicationMain}>
-      <h3>Pastrol official app</h3>
+      <RouteComponent />
     </div>
   );
+
 }
 
 export default App;
