@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import HomePage from 'pages/home-page/HomePage';
-import AllContacts from 'pages/all-contacts/AllContacts';
+import Spinner from 'components/generics/spinner/Spinner';
+
+const HomePage = React.lazy(() => import('pages/home-page/HomePage'));
+const AllContacts = React.lazy(() => import('pages/all-contacts/AllContacts'));
+const USContacts = React.lazy(() => import('pages/us-contacts/USContacts'));
 
 function RouteComponent() {
 
@@ -11,7 +14,10 @@ function RouteComponent() {
 
     const homePageRouteAttributes = {
       path: '/',
-      element: <HomePage />
+      element:
+        <Suspense fallback={<Spinner />}>
+          <HomePage />
+        </Suspense>
     };
 
     return <Route {...homePageRouteAttributes} />;
@@ -21,16 +27,34 @@ function RouteComponent() {
 
     const allContactsPageRouteAttributes = {
       path: '/all-contacts',
-      element: <AllContacts />
+      element:
+        <Suspense fallback={<Spinner />}>
+          <AllContacts />
+        </Suspense>
     };
 
     return <Route {...allContactsPageRouteAttributes} />;
+  }
+
+  function renderUSContactsPageRoute() {
+
+    const usContactsPageRouteAttributes = {
+      path: '/us-contacts',
+      element:
+        <Suspense fallback={<Spinner />}>
+          <USContacts />
+        </Suspense>
+    };
+
+    return <Route {...usContactsPageRouteAttributes} />;
+
   }
 
   return (
     <Routes>
       {renderHomePageRoute()}
       {renderAllContactsPageRoute()}
+      {renderUSContactsPageRoute()}
     </Routes>
   );
 }

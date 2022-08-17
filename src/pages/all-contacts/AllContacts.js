@@ -2,15 +2,16 @@ import React from 'react';
 
 import ContactsModal from 'components/contacts-modal/ContactsModal';
 
-import styles from './AllContacts.module.scss';
+import contactModes from 'constants/contact-modes';
 
 function AllContacts() {
 
-  return (
-    <div id={styles.allContactsMain}>
-      <ContactsModal />
-    </div>
-  );
+  const contactModelProperties = {
+    mode: contactModes.ALL_CONTACTS
+  };
+
+  return <ContactsModal {...contactModelProperties} />;
+
 }
 
 export default AllContacts;
