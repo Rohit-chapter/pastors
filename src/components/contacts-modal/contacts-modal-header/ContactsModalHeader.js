@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import styles from './HomePage.module.scss';
+import styles from './ContactsModalHeader.module.scss';
 
-function HomePage() {
+function ContactsModalHeader() {
 
   const navigate = useNavigate();
 
@@ -22,12 +22,20 @@ function HomePage() {
     }
   };
 
+  const closeControlAttributes = {
+    className: `application-themed-button ${styles.closeControl}`,
+    onClick() {
+      navigate('/');
+    }
+  };
+
   return (
-    <div id={styles.homePageMain}>
+    <div className={styles.contactsModalHeaderMain}>
       <button {...allContactsControlAttributes}>All Contacts</button>
       <button {...usContactsControlAttributes}>US Contacts</button>
+      <button {...closeControlAttributes}>Close</button>
     </div>
   );
 }
 
-export default HomePage;
+export default ContactsModalHeader;

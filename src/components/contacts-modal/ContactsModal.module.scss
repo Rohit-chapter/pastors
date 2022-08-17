@@ -1,0 +1,13 @@
+.contactModalMain {
+  padding: 20px;
+  border: none !important;
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 20px;
+
+  .modalLabel {
+    font-size: 25px;
+    font-family: 'Roboto-Bold';
+    margin: 0 auto;
+  }
+}

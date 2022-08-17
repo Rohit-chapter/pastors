@@ -1,0 +1,27 @@
+.contactsSearchControlMain {
+  display: grid;
+  grid-template-columns: 40px auto;
+  align-items: center;
+  border: 1px solid var(--application-border-color);
+  border-radius: var(--application-border-radius);
+
+  .searchIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .searchIcon {
+      width: 20px;
+      height: 20px;
+
+      g {
+        stroke: var(--application-border-color);
+      }
+    }
+  }
+
+  .searchInputControl {
+    border: none;
+    padding: 10px;
+  }
+}
