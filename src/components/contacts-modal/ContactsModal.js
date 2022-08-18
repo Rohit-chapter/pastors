@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 
 import { Modal } from 'react-bootstrap';
+import { BounceLoader } from 'react-spinners';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import contactModes from 'constants/contact-modes';
 
 import ContactsModalHeader from './contacts-modal-header/ContactsModalHeader';
 import ContactsSearchControl from './contacts-search-control/ContactsSearchControl';
+import ContactsList from './contacts-list/ContactsList';
 
 import styles from './ContactsModal.module.scss';
 
 function ContactsModal(props) {
 
-  const { mode } = props;
+  const { mode, data, page, onLoadMore } = props;
 
   const [onlyEven, setOnlyEven] = useState(false);
 
@@ -26,11 +29,48 @@ function ContactsModal(props) {
     return <h3 className={styles.modalLabel}>{label}</h3>;
   }
 
+  function renderLoadingContainer() {
+
+    const spinnerProperties = {
+      color: '#ff7f50',
+      loading: true,
+      size: 40
+    };
+
+    return (
+      <div className={styles.loadingContainer}>
+        <BounceLoader {...spinnerProperties} />
+      </div>
+    );
+  }
+
+  function fetch() {
+    console.log('called');
+  }
+
+  function renderContactsList() {
+
+    const infiniteScrollProperties = {
+      dataLength: 20,
+      next: fetch,
+      hasMore: true,
+      loader: <h4>loading...</h4>
+    };
+
+    return (
+      <InfiniteScroll {...infiniteScrollProperties}>
+        <ContactsList data={data} />
+      </InfiniteScroll>
+    );
+
+  }
+
   function renderContactModalBody() {
     return (
       <div className={styles.contactModalBody}>
         {renderContactsModalLabel()}
         <ContactsSearchControl onSearch={handleContactsSearch} />
+        {renderContactsList()}
       </div>
     );
   }

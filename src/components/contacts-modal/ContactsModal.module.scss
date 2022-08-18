@@ -10,7 +10,6 @@
     grid-auto-rows: min-content;
     row-gap: 20px;
     border-bottom: 1px solid var(--application-border-color);
-    padding: 20px 0;
   }
 
   .modalLabel {
@@ -35,4 +34,10 @@
     font-size: 16px;
     margin: 0;
   }
+
+  .contactListContainer {
+    height: 300px;
+    overflow-y: auto;
+  }
+
 }

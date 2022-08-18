@@ -11,7 +11,7 @@ const requestHandler = (request) => {
   const accessToken = process.env.REACT_APP_SERVER_ACCESS_TOKEN;
 
   if (accessToken !== null) {
-    request.headers['Authorization'] = 'Bearer ' + accessToken.token;
+    request.headers['Authorization'] = 'Bearer ' + accessToken;
   }
 
   return request;
