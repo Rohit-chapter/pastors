@@ -14,10 +14,7 @@ function RouteComponent() {
 
     const homePageRouteAttributes = {
       path: '/',
-      element:
-        <Suspense fallback={<Spinner />}>
-          <HomePage />
-        </Suspense>
+      element: <HomePage />
     };
 
     return <Route {...homePageRouteAttributes} />;
@@ -27,10 +24,7 @@ function RouteComponent() {
 
     const allContactsPageRouteAttributes = {
       path: '/all-contacts',
-      element:
-        <Suspense fallback={<Spinner />}>
-          <AllContacts />
-        </Suspense>
+      element: <AllContacts />
     };
 
     return <Route {...allContactsPageRouteAttributes} />;
@@ -40,10 +34,7 @@ function RouteComponent() {
 
     const usContactsPageRouteAttributes = {
       path: '/us-contacts',
-      element:
-        <Suspense fallback={<Spinner />}>
-          <USContacts />
-        </Suspense>
+      element: <USContacts />
     };
 
     return <Route {...usContactsPageRouteAttributes} />;
@@ -51,11 +42,13 @@ function RouteComponent() {
   }
 
   return (
-    <Routes>
-      {renderHomePageRoute()}
-      {renderAllContactsPageRoute()}
-      {renderUSContactsPageRoute()}
-    </Routes>
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        {renderHomePageRoute()}
+        {renderAllContactsPageRoute()}
+        {renderUSContactsPageRoute()}
+      </Routes>
+    </Suspense>
   );
 }
 
