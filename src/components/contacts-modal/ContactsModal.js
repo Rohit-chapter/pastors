@@ -8,10 +8,10 @@ import contactModes from 'constants/contact-modes';
 
 import ContactsModalHeader from './contacts-modal-header/ContactsModalHeader';
 import ContactsSearchControl from './contacts-search-control/ContactsSearchControl';
+import ContactItemModal from './contact-item-modal/ContactItemModal';
 import { parseEvenIdContacts } from './utilities';
 
 import styles from './ContactsModal.module.scss';
-import ContactItemModal from './contact-item-modal/ContactItemModal';
 
 function ContactsModal(props) {
 
@@ -79,7 +79,7 @@ function ContactsModal(props) {
   function renderContactsList() {
 
     const infiniteScrollProperties = {
-      dataLength: 20,
+      dataLength: data.length,
       next: onLoadMore,
       hasMore: true,
       loader: renderSpinner(),

@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import ContactsModal from 'components/contacts-modal/ContactsModal';
 
 import contactModes from 'constants/contact-modes';
 
 import { getUSContacts } from 'services/contact.services';
+import { updateUSContacts } from 'redux/actions/contact.action';
 
 function USContacts() {
 
+  const dispatch = useDispatch();
+
+  const contacts = useSelector((state) => state.contact.usContacts);
+
   const [rootState, setRootState] = useState({
     loading: false,
-    page: 0,
-    data: []
+    page: 0
   });
 
   useEffect(() => {
@@ -34,12 +40,15 @@ function USContacts() {
 
       const response = await getUSContacts(rootState.page + 1);
 
+      const data = [...contacts, ...response.data];
+
+      dispatch(updateUSContacts(data));
+
       setRootState((_rootState) => {
         return {
           ...rootState,
           loading: false,
-          page: rootState.page + 1,
-          data: [...rootState.data, ...response.data]
+          page: rootState.page + 1
         };
       });
 
@@ -60,7 +69,7 @@ function USContacts() {
 
   const contactModelProperties = {
     mode: contactModes.US_CONTACTS,
-    data: rootState.data,
+    data: contacts,
     page: rootState.page,
     onLoadMore: fetchContacts
   };
