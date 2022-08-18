@@ -7,7 +7,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--application-primary-background-color);
   color: var(--application-text-color);
+
+  ::-webkit-scrollbar {
+    width: 0.4em;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--application-primary-color);
+    border-radius: 0.3em;
+  }
+
 }
+
+
 
 @font-face {
   font-family: "Roboto-Bold";

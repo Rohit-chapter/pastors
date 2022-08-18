@@ -24,6 +24,10 @@ function AllContacts() {
 
     fetchContacts();
 
+    return () => {
+      dispatch(updateAllContacts([]));
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
