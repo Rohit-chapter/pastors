@@ -1,0 +1,66 @@
+.contactItemModalMain {
+
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 20px;
+
+  .contactItemHeader {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 30px auto;
+    column-gap: 30%;
+  }
+
+  .backControl {
+    width: 30px;
+    height: 30px;
+    background-color: inherit;
+    outline: none;
+    border: none;
+    border-radius: var(--application-border-radius);
+
+    &:hover {
+      background-color: var(--application-border-color);
+    }
+  }
+
+  .backArrowIcon {
+    width: 20px;
+  }
+
+  .contactInfoLabel {
+    font-size: 20px;
+    font-family: 'Roboto-Bold';
+    margin: 0;
+  }
+
+  .contactItemBody {
+    display: grid;
+    grid-auto-rows: min-content;
+  }
+
+  .idAvatar {
+    width: 60px;
+    height: 60px;
+    background-color: var(--application-primary-color);
+    color: var(--application-primary-background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--application-border-radius);
+    font-weight: 800;
+    font-family: 'Roboto-Bold';
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  .contactTitle {
+    font-size: 20px;
+    font-family: 'Roboto-Medium';
+  }
+
+  .contactText {
+    font-size: 15px;
+    color: var(--application-border-color);
+  }
+}
