@@ -8,13 +8,13 @@ import contactModes from 'constants/contact-modes';
 
 import ContactsModalHeader from './contacts-modal-header/ContactsModalHeader';
 import ContactsSearchControl from './contacts-search-control/ContactsSearchControl';
-import ContactsList from './contacts-list/ContactsList';
+import { parseEvenIdContacts } from './utilities';
 
 import styles from './ContactsModal.module.scss';
 
 function ContactsModal(props) {
 
-  const { mode, data, page, onLoadMore } = props;
+  const { mode, data, onLoadMore } = props;
 
   const [onlyEven, setOnlyEven] = useState(false);
 
@@ -29,7 +29,7 @@ function ContactsModal(props) {
     return <h3 className={styles.modalLabel}>{label}</h3>;
   }
 
-  function renderLoadingContainer() {
+  function renderSpinner() {
 
     const spinnerProperties = {
       color: '#ff7f50',
@@ -44,22 +44,47 @@ function ContactsModal(props) {
     );
   }
 
-  function fetch() {
-    console.log('called');
+  function renderContactItem(contact) {
+
+    const contactItemAttributes = {
+      className: styles.contactItem,
+      key: contact.id,
+      onClick() { }
+    };
+
+    let contactText = contact.name;
+
+    if (mode === contactModes.US_CONTACTS) {
+      contactText = contact.title;
+    }
+
+    return (
+      <div {...contactItemAttributes}>
+        <div className={styles.contactAvatar}>{contact.id}</div>
+        <label className={styles.contactText}>{contactText}</label>
+      </div>
+    );
   }
 
   function renderContactsList() {
 
     const infiniteScrollProperties = {
       dataLength: 20,
-      next: fetch,
+      next: onLoadMore,
       hasMore: true,
-      loader: <h4>loading...</h4>
+      loader: renderSpinner(),
+      height: 300
     };
+
+    const contacts = parseEvenIdContacts(data, onlyEven);
 
     return (
       <InfiniteScroll {...infiniteScrollProperties}>
-        <ContactsList data={data} />
+        {
+          contacts.map((contact) => (
+            renderContactItem(contact)
+          ))
+        }
       </InfiniteScroll>
     );
 

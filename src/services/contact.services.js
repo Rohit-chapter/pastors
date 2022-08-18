@@ -11,3 +11,13 @@ export async function getAllContacts(page) {
   return response;
 
 }
+
+export async function getUSContacts(page) {
+
+  const url = `/posts?_page=${page}&_limit=${limit}`;
+
+  const response = await customAxios.get(url);
+
+  return response;
+
+}

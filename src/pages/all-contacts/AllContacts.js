@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import ContactsModal from 'components/contacts-modal/ContactsModal';
-import Spinner from 'components/generics/spinner/Spinner';
 
 import contactModes from 'constants/contact-modes';
 
@@ -11,7 +10,7 @@ function AllContacts() {
 
   const [rootState, setRootState] = useState({
     loading: false,
-    page: 1,
+    page: 0,
     data: []
   });
 
@@ -33,13 +32,14 @@ function AllContacts() {
         };
       });
 
-      const response = await getAllContacts(rootState.page);
+      const response = await getAllContacts(rootState.page + 1);
 
       setRootState((_rootState) => {
         return {
           ...rootState,
           loading: false,
-          data: response.data
+          page: rootState.page + 1,
+          data: [...rootState.data, ...response.data]
         };
       });
 
@@ -62,15 +62,8 @@ function AllContacts() {
     mode: contactModes.ALL_CONTACTS,
     data: rootState.data,
     page: rootState.page,
-    onLoadMore(page) {
-      console.log(page);
-      fetchContacts();
-    }
+    onLoadMore: fetchContacts
   };
-
-  if (rootState.loading === true) {
-    return <Spinner />;
-  }
 
   return <ContactsModal {...contactModelProperties} />;
 
