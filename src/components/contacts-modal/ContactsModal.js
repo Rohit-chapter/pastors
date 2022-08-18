@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Modal } from 'react-bootstrap';
 
@@ -13,6 +13,8 @@ function ContactsModal(props) {
 
   const { mode } = props;
 
+  const [onlyEven, setOnlyEven] = useState(false);
+
   function renderContactsModalLabel() {
 
     let label = 'All Contacts';
@@ -24,6 +26,38 @@ function ContactsModal(props) {
     return <h3 className={styles.modalLabel}>{label}</h3>;
   }
 
+  function renderContactModalBody() {
+    return (
+      <div className={styles.contactModalBody}>
+        {renderContactsModalLabel()}
+        <ContactsSearchControl onSearch={handleContactsSearch} />
+      </div>
+    );
+  }
+
+  function renderContactModalFooter() {
+
+    const onlyEvenInputControlAttributes = {
+      type: 'checkbox',
+      className: styles.onlyEvenInputControl,
+      value: onlyEven,
+      onChange() {
+        setOnlyEven((_onlyEven) => !_onlyEven);
+      }
+    };
+
+    return (
+      <div className={styles.contactModalFooter}>
+        <input {...onlyEvenInputControlAttributes} />
+        <label className={styles.onlyEvenLabel}>Only even</label>
+      </div>
+    );
+  }
+
+  function handleContactsSearch(searchText) {
+    // console.log(searchText);
+  }
+
   const contactModalProperties = {
     show: true,
     size: 'lg',
@@ -33,15 +67,15 @@ function ContactsModal(props) {
     contentClassName: styles.contactModalMain
   };
 
-  function handleContactsSearch(searchText) {
-    console.log(searchText);
-  }
-
   return (
     <Modal {...contactModalProperties}>
+
       <ContactsModalHeader />
-      {renderContactsModalLabel()}
-      <ContactsSearchControl onSearch={handleContactsSearch} />
+
+      {renderContactModalBody()}
+
+      {renderContactModalFooter()}
+
     </Modal>
   );
 }

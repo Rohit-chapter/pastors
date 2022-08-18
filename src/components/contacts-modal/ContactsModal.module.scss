@@ -5,9 +5,34 @@
   grid-auto-rows: min-content;
   row-gap: 20px;
 
+  .contactModalBody {
+    display: grid;
+    grid-auto-rows: min-content;
+    row-gap: 20px;
+    border-bottom: 1px solid var(--application-border-color);
+    padding: 20px 0;
+  }
+
   .modalLabel {
     font-size: 25px;
     font-family: 'Roboto-Bold';
     margin: 0 auto;
+  }
+
+  .contactModalFooter {
+    display: grid;
+    grid-template-columns: 20px auto;
+    column-gap: 15px;
+    align-items: center;
+  }
+
+  .onlyEvenInputControl {
+    width: 20px;
+    height: 20px;
+  }
+
+  .onlyEvenLabel {
+    font-size: 16px;
+    margin: 0;
   }
 }
