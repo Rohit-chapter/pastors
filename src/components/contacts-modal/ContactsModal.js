@@ -11,12 +11,19 @@ import ContactsSearchControl from './contacts-search-control/ContactsSearchContr
 import { parseEvenIdContacts } from './utilities';
 
 import styles from './ContactsModal.module.scss';
+import ContactItemModal from './contact-item-modal/ContactItemModal';
 
 function ContactsModal(props) {
 
   const { mode, data, onLoadMore } = props;
 
   const [onlyEven, setOnlyEven] = useState(false);
+  const [displayContactItemModal, setDisplayContactItemModal] = useState(false);
+  const [contactInfo, setContactInfo] = useState(null);
+
+  function handleContactsSearch(searchText) {
+    // console.log(searchText);
+  }
 
   function renderContactsModalLabel() {
 
@@ -49,7 +56,10 @@ function ContactsModal(props) {
     const contactItemAttributes = {
       className: styles.contactItem,
       key: contact.id,
-      onClick() { }
+      onClick() {
+        setDisplayContactItemModal(true);
+        setContactInfo(contact);
+      }
     };
 
     let contactText = contact.name;
@@ -119,10 +129,6 @@ function ContactsModal(props) {
     );
   }
 
-  function handleContactsSearch(searchText) {
-    // console.log(searchText);
-  }
-
   const contactModalProperties = {
     show: true,
     size: 'lg',
@@ -132,14 +138,36 @@ function ContactsModal(props) {
     contentClassName: styles.contactModalMain
   };
 
+  function renderContactModalContent() {
+
+    const contactItemModalAttributes = {
+      data: contactInfo,
+      onBack() {
+        setDisplayContactItemModal(false);
+      }
+    };
+
+    if (displayContactItemModal === true) {
+      return <ContactItemModal {...contactItemModalAttributes} />;
+    }
+
+    return (
+      <React.Fragment>
+
+        <ContactsModalHeader />
+
+        {renderContactModalBody()}
+
+        {renderContactModalFooter()}
+
+      </React.Fragment>
+    );
+  }
+
   return (
     <Modal {...contactModalProperties}>
 
-      <ContactsModalHeader />
-
-      {renderContactModalBody()}
-
-      {renderContactModalFooter()}
+      {renderContactModalContent()}
 
     </Modal>
   );
