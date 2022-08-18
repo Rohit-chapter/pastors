@@ -58,8 +58,7 @@ function USContacts() {
 
     } catch (exception) {
 
-      // eslint-disable-next-line no-console
-      console.log(exception);
+      alert(JSON.stringify(exception));
 
       setRootState((_rootState) => {
         return {

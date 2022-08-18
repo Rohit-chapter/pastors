@@ -44,21 +44,12 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 Right now we are using [https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/) api for data manipulation as mentioned api is giving `Expired token` error.
 
 Following things are working fine:
-
 -> Navigation between different modals, changing their urls etc.
-
 -> REST api integration via axios
-
 -> Infinite scrolling
-
--> Search input control is also created with debounce kind of working but as there is no specific 
-way inside `jsonplaceholder` api's to search as query so searching is not working.
-
+-> Search input control is also created with debounce kind of working but as there is no specific way inside `jsonplaceholder` api's to search as query so searching is not working.
 -> Filtering data based on even ids
-
 -> Redux implementation for data handling
-
 -> Custom scrollbar via CSS styling
-
 
 

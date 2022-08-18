@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const serverURL = 'https://jsonplaceholder.typicode.com';
+const serverURL = process.env.REACT_APP_SERVER_URL;
 
 const customAxios = axios.create({
   baseURL: serverURL
@@ -8,11 +8,11 @@ const customAxios = axios.create({
 
 const requestHandler = (request) => {
 
-  // const accessToken = process.env.REACT_APP_SERVER_ACCESS_TOKEN;
+  const accessToken = process.env.REACT_APP_SERVER_ACCESS_TOKEN;
 
-  // if (accessToken !== null) {
-  //   request.headers['Authorization'] = 'Bearer ' + accessToken;
-  // }
+  if (accessToken !== null) {
+    request.headers['Authorization'] = 'Bearer ' + accessToken;
+  }
 
   return request;
 
